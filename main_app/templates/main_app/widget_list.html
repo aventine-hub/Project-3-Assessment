@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,6 +9,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"
         integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 
 <body class="pure-grid">
@@ -15,14 +18,16 @@
     <h3>No Widgets Exist</h3>
     <hr>
     {% else %}
-    <table>
-        <tr>
-            <td>Description</td>
-            <td>Quantity</td>
-            <td>Delete</td>
-        </tr>
+    <table class="pure-table" class="pure-table-striped">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
 
-        {% for widget in widgets_list %}
+        {% for widget in widget_list %}
         <tr>
             <td>{{ widget.description }}</td>
             <td>{{ widget.quantity }}</td>
@@ -32,9 +37,9 @@
     </table>
     {% endif %}
     <h4>Add Widget</h4>
-    <form method="post">
+    <form action="{% url 'widgets_create' %}" method="post">
         {% csrf_token %}
-        {{ widget_form.as_p }}
+        {{ widget_form.as_table }}
         <input type="submit" class="btn" value="Add Widget">
     </form>
     <br>

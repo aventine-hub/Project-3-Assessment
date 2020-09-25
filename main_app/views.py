@@ -4,8 +4,7 @@ from django.views.generic.edit import DeleteView, CreateView
 from django.views.generic import ListView
 
 # Create your views here.
-def home(request):
-    return render(request, 'home.html', {'widgets': Widget.objects.all()})
+
 
 class WidgetList(ListView):
   model = Widget
@@ -16,7 +15,7 @@ class WidgetList(ListView):
 
 class WidgetCreate(CreateView):
   model = Widget
-  fields = '__all__'
+  fields = ['description', 'quantity']
 
 class WidgetDelete(DeleteView):
   model = Widget
