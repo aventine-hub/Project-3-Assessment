@@ -6,3 +6,5 @@ from django.views.generic.edit import DeleteView
 def home(request):
     return render(request, 'home.html', {'widgets': Widget.objects.all()})
 
+def widget_create(request):
+    pass

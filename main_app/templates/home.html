@@ -22,6 +22,10 @@
         <tr>Delete</tr>
         {% endfor %}
     </table>
+    {% else %}
+    <h3>No Widgets Exist</h3>
+    <hr>
+    {% endif %}
     <h3>Add Widget</h3>
     <form action="{% url 'widget_create' %}" method="POST">
         {% csrf_token %}
@@ -29,9 +33,6 @@
         <input type="integer" name="quantity">
         <button type="submit">ADD WIDGET</button>
     </form>
-    {% else %}
-    <h3>No Widgets Exist</h3>
-    {% endif %}
     <br>
 </body>
 
